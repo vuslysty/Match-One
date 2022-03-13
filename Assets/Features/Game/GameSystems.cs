@@ -8,6 +8,7 @@
 
         // Update
         Add(new BoardSystem(contexts));
+        Add(new GroupRemoveSystem(contexts));
         Add(new FallSystem(contexts));
         Add(new FillSystem(contexts));
         Add(new ScoreSystem(contexts));
@@ -20,8 +21,6 @@
         Add(new GameEventSystems(contexts));
         Add(new GameStateEventSystems(contexts));
 
-        // Cleanup (Generated, only with Entitas Asset Store version)
-        Add(new InputCleanupSystems(contexts));
-        Add(new GameCleanupSystems(contexts));
+        Add(new DestroySystem(contexts));
     }
 }

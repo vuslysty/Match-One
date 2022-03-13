@@ -11,7 +11,7 @@ public class View : MonoBehaviour, IView, IPositionListener, IDestroyedListener
         e.AddPositionListener(this);
         e.AddDestroyedListener(this);
 
-        var pos = e.position.value;
+        var pos = e.initPosition.value;
         transform.localPosition = new Vector3(pos.x, pos.y);
     }
 

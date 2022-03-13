@@ -25,7 +25,9 @@ public sealed class FillSystem : ReactiveSystem<GameEntity>
             var nextRowPos = BoardLogic.GetNextEmptyRow(_contexts, position);
             while (nextRowPos != board.y)
             {
-                _contexts.game.CreateRandomPiece(x, nextRowPos);
+                var e = _contexts.game.CreateRandomPiece(position.x, position.y);
+                e.ReplacePosition(new Vector2Int(x, nextRowPos));
+                
                 nextRowPos = BoardLogic.GetNextEmptyRow(_contexts, position);
             }
         }

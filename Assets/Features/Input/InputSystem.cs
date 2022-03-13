@@ -2,7 +2,7 @@
 using Entitas;
 using UnityEngine;
 
-public sealed class InputSystem : IExecuteSystem
+public sealed class InputSystem : IExecuteSystem, ICleanupSystem
 {
     readonly Contexts _contexts;
 
@@ -14,7 +14,16 @@ public sealed class InputSystem : IExecuteSystem
     public void Execute()
     {
         setBurstMode();
+        setGroupMode();
         emitInput();
+    }
+
+    public void Cleanup()
+    {
+        foreach (var e in _contexts.input.GetGroup(InputMatcher.Input).GetEntities())
+        {
+            e.Destroy();
+        }
     }
 
     void setBurstMode()
@@ -22,6 +31,14 @@ public sealed class InputSystem : IExecuteSystem
         if (Input.GetKeyDown(KeyCode.B))
         {
             _contexts.input.isBurstMode = !_contexts.input.isBurstMode;
+        }
+    }
+
+    void setGroupMode()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            _contexts.input.isGroupMode = !_contexts.input.isGroupMode;
         }
     }
 

@@ -8,7 +8,9 @@ public static class PieceContextExtension
         entity.isPiece = true;
         entity.isMovable = true;
         entity.isInteractive = true;
-        entity.AddPosition(new Vector2Int(x, y));
+        var pos = new Vector2Int(x, y);
+        entity.AddInitPosition(pos);
+        entity.AddPosition(pos);
         entity.AddAsset("Piece" + Rand.game.Int(6));
         return entity;
     }
@@ -17,7 +19,9 @@ public static class PieceContextExtension
     {
         var entity = context.CreateEntity();
         entity.isPiece = true;
-        entity.AddPosition(new Vector2Int(x, y));
+        var pos = new Vector2Int(x, y);
+        entity.AddInitPosition(pos);
+        entity.AddPosition(pos);
         entity.AddAsset("Blocker");
         return entity;
     }

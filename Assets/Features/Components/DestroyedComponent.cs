@@ -1,7 +1,7 @@
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
 
-[Event(EventTarget.Self), Cleanup(CleanupMode.DestroyEntity)]
+[Event(EventTarget.Self)]
 public sealed class DestroyedComponent : IComponent
 {
 }
